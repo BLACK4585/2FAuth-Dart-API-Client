@@ -11,10 +11,13 @@
 part of openapi.api;
 
 class ApiClient {
-  ApiClient({this.basePath = 'https://demo.2fauth.app', this.authentication,});
+  ApiClient({this.basePath = 'https://demo.2fauth.app', this.authentication});
 
   final String basePath;
-  final Authentication? authentication;
+  Authentication? authentication;
+
+  Authentication get auth => authentication!;
+  set auth(Authentication newAuth) => authentication = newAuth;
 
   var _client = Client();
   final _defaultHeaderMap = <String, String>{};

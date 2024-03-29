@@ -92,12 +92,10 @@ class IconsApi {
 
     bool hasFields = false;
     final mp = MultipartRequest('POST', Uri.parse(path));
-    if (icon != null) {
-      hasFields = true;
-      mp.fields[r'icon'] = icon.field;
-      mp.files.add(icon);
-    }
-    if (hasFields) {
+    hasFields = true;
+    mp.fields[r'icon'] = icon.field;
+    mp.files.add(icon);
+      if (hasFields) {
       postBody = mp;
     }
 

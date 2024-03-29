@@ -19,7 +19,7 @@ class PostTwofaccountsRequest {
     required this.otpType,
     this.secret,
     this.digits,
-    this.algorithm = const PostTwofaccountsRequestAlgorithmEnum._(sha1),
+    this.algorithm = PostTwofaccountsRequestAlgorithmEnum.sha1,
     this.period = 30,
     this.counter = 0,
     required this.uri,
@@ -56,34 +56,37 @@ class PostTwofaccountsRequest {
   Object? uri;
 
   @override
-  bool operator ==(Object other) => identical(this, other) || other is PostTwofaccountsRequest &&
-    other.service == service &&
-    other.account == account &&
-    other.icon == icon &&
-    other.otpType == otpType &&
-    other.secret == secret &&
-    other.digits == digits &&
-    other.algorithm == algorithm &&
-    other.period == period &&
-    other.counter == counter &&
-    other.uri == uri;
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PostTwofaccountsRequest &&
+          other.service == service &&
+          other.account == account &&
+          other.icon == icon &&
+          other.otpType == otpType &&
+          other.secret == secret &&
+          other.digits == digits &&
+          other.algorithm == algorithm &&
+          other.period == period &&
+          other.counter == counter &&
+          other.uri == uri;
 
   @override
   int get hashCode =>
-    // ignore: unnecessary_parenthesis
-    (service == null ? 0 : service!.hashCode) +
-    (account == null ? 0 : account!.hashCode) +
-    (icon == null ? 0 : icon!.hashCode) +
-    (otpType == null ? 0 : otpType!.hashCode) +
-    (secret == null ? 0 : secret!.hashCode) +
-    (digits == null ? 0 : digits!.hashCode) +
-    (algorithm == null ? 0 : algorithm!.hashCode) +
-    (period == null ? 0 : period!.hashCode) +
-    (counter == null ? 0 : counter!.hashCode) +
-    (uri == null ? 0 : uri!.hashCode);
+      // ignore: unnecessary_parenthesis
+      (service == null ? 0 : service!.hashCode) +
+      (account == null ? 0 : account!.hashCode) +
+      (icon == null ? 0 : icon!.hashCode) +
+      (otpType == null ? 0 : otpType!.hashCode) +
+      (secret == null ? 0 : secret!.hashCode) +
+      (digits == null ? 0 : digits!.hashCode) +
+      (algorithm == null ? 0 : algorithm!.hashCode) +
+      (period == null ? 0 : period!.hashCode) +
+      (counter == null ? 0 : counter!.hashCode) +
+      (uri == null ? 0 : uri!.hashCode);
 
   @override
-  String toString() => 'PostTwofaccountsRequest[service=$service, account=$account, icon=$icon, otpType=$otpType, secret=$secret, digits=$digits, algorithm=$algorithm, period=$period, counter=$counter, uri=$uri]';
+  String toString() =>
+      'PostTwofaccountsRequest[service=$service, account=$account, icon=$icon, otpType=$otpType, secret=$secret, digits=$digits, algorithm=$algorithm, period=$period, counter=$counter, uri=$uri]';
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -152,8 +155,10 @@ class PostTwofaccountsRequest {
       // Note 2: this code is stripped in release mode!
       assert(() {
         requiredKeys.forEach((key) {
-          assert(json.containsKey(key), 'Required key "PostTwofaccountsRequest[$key]" is missing from JSON.');
-          assert(json[key] != null, 'Required key "PostTwofaccountsRequest[$key]" has a null value in JSON.');
+          assert(json.containsKey(key),
+              'Required key "PostTwofaccountsRequest[$key]" is missing from JSON.');
+          assert(json[key] != null,
+              'Required key "PostTwofaccountsRequest[$key]" has a null value in JSON.');
         });
         return true;
       }());
@@ -162,10 +167,12 @@ class PostTwofaccountsRequest {
         service: mapValueOfType<Object>(json, r'service'),
         account: mapValueOfType<Object>(json, r'account'),
         icon: mapValueOfType<Object>(json, r'icon'),
-        otpType: Object.fromJson(json[r'otp_type']),
+        otpType: PostTwofaccountsRequestOtpTypeEnum.fromJson(json[r'otp_type']),
         secret: mapValueOfType<Object>(json, r'secret'),
         digits: mapValueOfType<Object>(json, r'digits'),
-        algorithm: Object.fromJson(json[r'algorithm']) ?? sha1,
+        algorithm:
+            PostTwofaccountsRequestAlgorithmEnum.fromJson(json[r'algorithm']) ??
+                PostTwofaccountsRequestAlgorithmEnum.sha1,
         period: mapValueOfType<Object>(json, r'period') ?? 30,
         counter: mapValueOfType<Object>(json, r'counter') ?? 0,
         uri: mapValueOfType<Object>(json, r'uri'),
@@ -174,7 +181,10 @@ class PostTwofaccountsRequest {
     return null;
   }
 
-  static List<PostTwofaccountsRequest> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PostTwofaccountsRequest> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <PostTwofaccountsRequest>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -202,13 +212,19 @@ class PostTwofaccountsRequest {
   }
 
   // maps a json object with a list of PostTwofaccountsRequest-objects as value to a dart map
-  static Map<String, List<PostTwofaccountsRequest>> mapListFromJson(dynamic json, {bool growable = false,}) {
+  static Map<String, List<PostTwofaccountsRequest>> mapListFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final map = <String, List<PostTwofaccountsRequest>>{};
     if (json is Map && json.isNotEmpty) {
       // ignore: parameter_assignments
       json = json.cast<String, dynamic>();
       for (final entry in json.entries) {
-        map[entry.key] = PostTwofaccountsRequest.listFromJson(entry.value, growable: growable,);
+        map[entry.key] = PostTwofaccountsRequest.listFromJson(
+          entry.value,
+          growable: growable,
+        );
       }
     }
     return map;
@@ -244,9 +260,13 @@ class PostTwofaccountsRequestOtpTypeEnum {
     hotp,
   ];
 
-  static PostTwofaccountsRequestOtpTypeEnum? fromJson(dynamic value) => PostTwofaccountsRequestOtpTypeEnumTypeTransformer().decode(value);
+  static PostTwofaccountsRequestOtpTypeEnum? fromJson(dynamic value) =>
+      PostTwofaccountsRequestOtpTypeEnumTypeTransformer().decode(value);
 
-  static List<PostTwofaccountsRequestOtpTypeEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PostTwofaccountsRequestOtpTypeEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <PostTwofaccountsRequestOtpTypeEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -263,7 +283,8 @@ class PostTwofaccountsRequestOtpTypeEnum {
 /// Transformation class that can [encode] an instance of [PostTwofaccountsRequestOtpTypeEnum] to Object,
 /// and [decode] dynamic data back to [PostTwofaccountsRequestOtpTypeEnum].
 class PostTwofaccountsRequestOtpTypeEnumTypeTransformer {
-  factory PostTwofaccountsRequestOtpTypeEnumTypeTransformer() => _instance ??= const PostTwofaccountsRequestOtpTypeEnumTypeTransformer._();
+  factory PostTwofaccountsRequestOtpTypeEnumTypeTransformer() =>
+      _instance ??= const PostTwofaccountsRequestOtpTypeEnumTypeTransformer._();
 
   const PostTwofaccountsRequestOtpTypeEnumTypeTransformer._();
 
@@ -277,11 +298,14 @@ class PostTwofaccountsRequestOtpTypeEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  PostTwofaccountsRequestOtpTypeEnum? decode(dynamic data, {bool allowNull = true}) {
+  PostTwofaccountsRequestOtpTypeEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case 'totp': return PostTwofaccountsRequestOtpTypeEnum.totp;
-        case 'hotp': return PostTwofaccountsRequestOtpTypeEnum.hotp;
+        case 'totp':
+          return PostTwofaccountsRequestOtpTypeEnum.totp;
+        case 'hotp':
+          return PostTwofaccountsRequestOtpTypeEnum.hotp;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -294,7 +318,6 @@ class PostTwofaccountsRequestOtpTypeEnumTypeTransformer {
   /// Singleton [PostTwofaccountsRequestOtpTypeEnumTypeTransformer] instance.
   static PostTwofaccountsRequestOtpTypeEnumTypeTransformer? _instance;
 }
-
 
 /// The algorithm used to generate the One-Time Password
 class PostTwofaccountsRequestAlgorithmEnum {
@@ -322,9 +345,13 @@ class PostTwofaccountsRequestAlgorithmEnum {
     md5,
   ];
 
-  static PostTwofaccountsRequestAlgorithmEnum? fromJson(dynamic value) => PostTwofaccountsRequestAlgorithmEnumTypeTransformer().decode(value);
+  static PostTwofaccountsRequestAlgorithmEnum? fromJson(dynamic value) =>
+      PostTwofaccountsRequestAlgorithmEnumTypeTransformer().decode(value);
 
-  static List<PostTwofaccountsRequestAlgorithmEnum> listFromJson(dynamic json, {bool growable = false,}) {
+  static List<PostTwofaccountsRequestAlgorithmEnum> listFromJson(
+    dynamic json, {
+    bool growable = false,
+  }) {
     final result = <PostTwofaccountsRequestAlgorithmEnum>[];
     if (json is List && json.isNotEmpty) {
       for (final row in json) {
@@ -341,7 +368,8 @@ class PostTwofaccountsRequestAlgorithmEnum {
 /// Transformation class that can [encode] an instance of [PostTwofaccountsRequestAlgorithmEnum] to Object,
 /// and [decode] dynamic data back to [PostTwofaccountsRequestAlgorithmEnum].
 class PostTwofaccountsRequestAlgorithmEnumTypeTransformer {
-  factory PostTwofaccountsRequestAlgorithmEnumTypeTransformer() => _instance ??= const PostTwofaccountsRequestAlgorithmEnumTypeTransformer._();
+  factory PostTwofaccountsRequestAlgorithmEnumTypeTransformer() => _instance ??=
+      const PostTwofaccountsRequestAlgorithmEnumTypeTransformer._();
 
   const PostTwofaccountsRequestAlgorithmEnumTypeTransformer._();
 
@@ -355,13 +383,18 @@ class PostTwofaccountsRequestAlgorithmEnumTypeTransformer {
   ///
   /// The [allowNull] is very handy when an API changes and a new enum value is added or removed,
   /// and users are still using an old app with the old code.
-  PostTwofaccountsRequestAlgorithmEnum? decode(dynamic data, {bool allowNull = true}) {
+  PostTwofaccountsRequestAlgorithmEnum? decode(dynamic data,
+      {bool allowNull = true}) {
     if (data != null) {
       switch (data) {
-        case 'sha1': return PostTwofaccountsRequestAlgorithmEnum.sha1;
-        case 'sha256': return PostTwofaccountsRequestAlgorithmEnum.sha256;
-        case 'sha512': return PostTwofaccountsRequestAlgorithmEnum.sha512;
-        case 'md5': return PostTwofaccountsRequestAlgorithmEnum.md5;
+        case 'sha1':
+          return PostTwofaccountsRequestAlgorithmEnum.sha1;
+        case 'sha256':
+          return PostTwofaccountsRequestAlgorithmEnum.sha256;
+        case 'sha512':
+          return PostTwofaccountsRequestAlgorithmEnum.sha512;
+        case 'md5':
+          return PostTwofaccountsRequestAlgorithmEnum.md5;
         default:
           if (!allowNull) {
             throw ArgumentError('Unknown enum value to decode: $data');
@@ -374,5 +407,3 @@ class PostTwofaccountsRequestAlgorithmEnumTypeTransformer {
   /// Singleton [PostTwofaccountsRequestAlgorithmEnumTypeTransformer] instance.
   static PostTwofaccountsRequestAlgorithmEnumTypeTransformer? _instance;
 }
-
-

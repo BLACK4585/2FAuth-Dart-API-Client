@@ -13,14 +13,25 @@ part of openapi.api;
 class UserPreferenceValue {
   /// Returns a new [UserPreferenceValue] instance.
   UserPreferenceValue({
+    required this.key,
+    required this.value,
   });
+
+  /// Name of the preference
+  String key;
+
+  UserPreferenceValue value;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is UserPreferenceValue &&
+    other.key == key &&
+    other.value == value;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (key.hashCode) +
+    (value.hashCode);
 
   @override
   String toString() => 'UserPreferenceValue[]';
@@ -49,6 +60,8 @@ class UserPreferenceValue {
       }());
 
       return UserPreferenceValue(
+        key: mapValueOfType<String>(json, r'key')!,
+        value: UserPreferenceValue.fromJson(json[r'value'])!,
       );
     }
     return null;

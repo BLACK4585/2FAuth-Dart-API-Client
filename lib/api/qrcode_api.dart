@@ -100,12 +100,10 @@ class QrcodeApi {
 
     bool hasFields = false;
     final mp = MultipartRequest('POST', Uri.parse(path));
-    if (qrcode != null) {
-      hasFields = true;
-      mp.fields[r'qrcode'] = qrcode.field;
-      mp.files.add(qrcode);
-    }
-    if (hasFields) {
+    hasFields = true;
+    mp.fields[r'qrcode'] = qrcode.field;
+    mp.files.add(qrcode);
+      if (hasFields) {
       postBody = mp;
     }
 

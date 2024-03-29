@@ -13,14 +13,25 @@ part of openapi.api;
 class SettingValue {
   /// Returns a new [SettingValue] instance.
   SettingValue({
+    required this.key,
+    required this.value,
   });
+
+  /// Name of the setting
+  String key;
+
+  SettingValue value;
 
   @override
   bool operator ==(Object other) => identical(this, other) || other is SettingValue &&
+    other.key == key &&
+    other.value == value;
 
   @override
   int get hashCode =>
     // ignore: unnecessary_parenthesis
+    (key.hashCode) +
+    (value.hashCode);
 
   @override
   String toString() => 'SettingValue[]';
@@ -49,6 +60,8 @@ class SettingValue {
       }());
 
       return SettingValue(
+        key: mapValueOfType<String>(json, r'key')!,
+        value: SettingValue.fromJson(json[r'value'])!,
       );
     }
     return null;

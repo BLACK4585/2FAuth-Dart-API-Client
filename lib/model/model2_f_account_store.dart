@@ -146,7 +146,7 @@ class Model2FAccountStore {
         otpType: Model2FAccountStoreOtpTypeEnum.fromJson(json[r'otp_type'])!,
         secret: mapValueOfType<String>(json, r'secret'),
         digits: mapValueOfType<int>(json, r'digits'),
-        algorithm: Model2FAccountStoreAlgorithmEnum.fromJson(json[r'algorithm']) ?? 'sha1',
+        algorithm: Model2FAccountStoreAlgorithmEnum.fromJson(json[r'algorithm']) ?? Model2FAccountStoreAlgorithmEnum.sha1,
         period: mapValueOfType<int>(json, r'period') ?? 30,
         counter: mapValueOfType<int>(json, r'counter') ?? 0,
       );
