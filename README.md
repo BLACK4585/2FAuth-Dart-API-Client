@@ -21,7 +21,7 @@ If this Dart package is published to Github, add the following dependency to you
 ```
 dependencies:
   openapi:
-    git: https://github.com/GIT_USER_ID/GIT_REPO_ID.git
+    git: https://github.com/BLACK4585/2FAuth-Dart-API-Client.git
 ```
 
 ### Local
@@ -31,6 +31,8 @@ dependencies:
   openapi:
     path: /path/to/openapi
 ```
+
+This package is used for the 2FAuth mobile app by me.
 
 ## Tests
 
